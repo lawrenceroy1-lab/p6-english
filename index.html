@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>P.6 English with T. Roy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html">🏠 P.6 English with T. Roy</a>
+  <div id="studentBar"></div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>🌍 Explore Our World 6</h1>
+    <p>English Communication · Class 6/1 · Pick a unit to learn, practise and play.</p>
+  </section>
+  <div class="unitbar" style="max-width:520px;margin:10px auto 0"><a class="ubtn board" href="leaderboard.html">🏅 Leaderboard</a></div>
+  <div class="unit-grid" id="units"></div>
+  <p class="footer">Made by T. Roy for class 6/1 · Book: Explore Our World 6 (2nd edition)</p>
+</main>
+<script src="js/config.js?v=3"></script>
+<script src="js/common.js?v=3"></script>
+<script src="js/thai.js?v=3"></script>
+<script src="js/draw.js?v=3"></script>
+<script>
+  const card = (u, isUnit) => `
+    <a class="unit-card ${u.ready ? "" : "soon"}" href="unit.html?u=${u.id}">
+      <div class="icon">${u.icon}</div>
+      <div class="num">${isUnit ? "UNIT " + Number(u.id) : "EXTRA"}</div>
+      <h2>${u.title}</h2>
+      ${u.pages ? `<div class="pg">📖 ${u.pages}</div>` : `<div class="pg">📖 Back of the book</div>`}
+      ${(b => b ? `<div class="done">🏅 Best test: ${b.score} / ${b.total}</div>` : "")(store.get("testBest_" + u.id, null))}
+    </a>`;
+  document.getElementById("units").innerHTML = UNITS.map(u => card(u, true)).join("") + EXTRAS.map(u => card(u, false)).join("");
+  askName(false);
+</script>
+</body>
+</html>

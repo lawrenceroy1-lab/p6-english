@@ -1,0 +1,10 @@
+# Source books (never publish)
+*.pdf
+# Private project notes
+CLAUDE.md
+Claude Code Prompt.txt
+.DS_Store
+.claude/
+# Answers for T. Roy to check (private, like the maths site)
+content/CHECK-ME.md
+__pycache__/
