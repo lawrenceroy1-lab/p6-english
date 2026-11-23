@@ -17,7 +17,7 @@ TH_WORDS = {"หนึ่ง": "1", "เดียว": "1", "สอง": "2", "�
 
 
 def numerals(s):
-    s = re.sub(r"<[^>]+>", " ", s).replace("กริยาช่องที่ 3", "").replace("กริยาช่องที่ 1", "")   # "verb form 3" is the Thai name for past participle
+    s = re.sub(r"<[^>]+>", " ", s).replace("กริยาช่องที่ 3", "").replace("กริยาช่องที่ 1", "").replace("กริยาช่องที่ 2", "")   # "verb form 3" is the Thai name for past participle
     s = re.sub(r"(?<=\d),(?=\d{3})", "", s)                        # 6,000 = 6000
     return set(re.findall(r"\d+(?:\.\d+)?", s))
 
