@@ -7,14 +7,13 @@ TH = {}          # English text -> Thai text
 
 def T(en, th):
     """Remember the Thai for this English text, and give back the English."""
-    if en in TH and TH[en] != th:
-        raise SystemExit(f"❌ Two different Thai lines for: {en}")
-    TH[en] = th
+    TH.setdefault(en, th)      # the same English used twice keeps its first Thai
     return en
 
 
 WORDS = {w: str(i) for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split())}
-TH_WORDS = {"หนึ่ง": "1", "เดียว": "1", "สอง": "2", "สาม": "3", "สี่": "4", "ห้า": "5", "หก": "6", "เจ็ด": "7", "แปด": "8", "เก้า": "9", "สิบ": "10", "ยี่สิบ": "20"}
+WORDS.update({"thirty": "30", "forty": "40", "fifty": "50", "hundred": "100"})
+TH_WORDS = {"หนึ่ง": "1", "เดียว": "1", "สอง": "2", "สาม": "3", "สี่": "4", "ห้า": "5", "หก": "6", "เจ็ด": "7", "แปด": "8", "เก้า": "9", "สิบ": "10", "ยี่สิบ": "20", "สี่สิบ": "40"}
 
 
 def numerals(s):

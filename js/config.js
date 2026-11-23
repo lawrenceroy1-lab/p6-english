@@ -13,7 +13,7 @@ const CLASSES = [CLASS];
 // Units shown on the home page. "ready: true" means the data file exists.
 const UNITS = [
   { id: "05", title: "Exciting Sports",      pages: "Book p.50 to 59 · Workbook p.40 to 47", icon: "🏄", ready: true  },
-  { id: "06", title: "History's a Mystery",  pages: "Book Unit 6 · Workbook p.48 to 55",     icon: "🏛️", ready: false },
+  { id: "06", title: "History's a Mystery",  pages: "Book p.60 to 69 · Workbook p.48 to 55", icon: "🏛️", ready: true  },
   { id: "07", title: "Chocolate!",           pages: "Book Unit 7 · Workbook p.56 to 63",     icon: "🍫", ready: false },
   { id: "08", title: "Cool Vacations!",      pages: "Book Unit 8 · Workbook p.64 to 71",     icon: "🏖️", ready: false }
 ];
