@@ -20,7 +20,7 @@ function prep(q) {
 }
 
 function unitHead(title, sub) {
-  return `<div class="panel-title"><h2>${title}</h2></div><p class="small" style="margin-top:-6px">Unit ${Number(DATA.unit)}: ${esc(DATA.title)}${sub ? " · " + sub : ""}</p>`;
+  return `<div class="panel-title"><h2>${title}</h2></div><p class="small" style="margin-top:-6px">${esc(unitName(DATA))}${sub ? " · " + sub : ""}</p>`;
 }
 
 function noBank() {
@@ -184,7 +184,7 @@ async function UnitTest() {
     cleanup();
     const time = Math.min(TEST_MIN * 60, Math.round((Date.now() - t0) / 1000));
     const score = qs.reduce((s, q, k) => s + (answers[k] >= 0 && q.opts[answers[k]].ok ? 1 : 0), 0);
-    saveScore({ unit: Number(DATA.unit), section: "Whole unit", activity: "Unit Test", score, total: n, time });
+    saveScore({ unit: unitNo(), section: "Whole unit", activity: "Unit Test", score, total: n, time });
     const best = store.get(bestKey, null);
     const isBest = !best || score > best.score || (score === best.score && time < best.time);
     if (isBest) store.set(bestKey, { score, total: n, time });

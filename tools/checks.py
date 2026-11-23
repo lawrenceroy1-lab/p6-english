@@ -85,7 +85,7 @@ def check_all(unit, bank, root):
 def write_check_me(unit, u, path):
     """Writes (or replaces) this unit's part of content/CHECK-ME.md."""
     strip = lambda s: re.sub(r"<[^>]+>", "", s)
-    lines = [f"<!-- UNIT {u} START -->", f"## Unit {int(u)}: {unit['title']}", "",
+    lines = [f"<!-- UNIT {u} START -->", (f"## Unit {int(u)}: {unit['title']}" if u.isdigit() else f"## {unit['title']}"), "",
              "Every answer below was written by Claude (there is no answer key). Please tick ✅ or correct it.",
              "Items marked 🎧 need the class audio; no answer was written for them.", ""]
     for sec in unit["sections"]:

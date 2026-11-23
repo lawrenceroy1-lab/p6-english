@@ -24,6 +24,9 @@ const ACTS = [
 ];
 
 const view = () => document.getElementById("view");
+// Units 5 to 8 have numbers; Review and Irregular Verbs do not.
+const unitNo = () => isNaN(+DATA.unit) ? DATA.unit : Number(DATA.unit);
+const unitName = d => isNaN(+d.unit) ? d.title : `Unit ${Number(d.unit)}: ${d.title}`;
 const fig = () => "";                       // (maths diagrams: not used on the English site)
 const img = (src, alt, cls) => src ? `<img class="${cls || "wimg"}" src="${src}" alt="${esc(alt || "")}" loading="lazy" decoding="async" onerror="this.style.display='none'">` : "";
 
@@ -33,8 +36,8 @@ fetch(`content/unit${UNIT_ID}.json`, { cache: "no-cache" })
   .then(async d => {
     await loadThai(UNIT_ID);
     DATA = d;
-    document.title = `Unit ${Number(d.unit)}: ${d.title} | P.6 English with T. Roy`;
-    document.getElementById("unitTitle").innerHTML = `Unit ${Number(d.unit)}: ${esc(d.title)} <span class="small">📖 ${esc(d.pages)}</span>`;
+    document.title = `${unitName(d)} | P.6 English with T. Roy`;
+    document.getElementById("unitTitle").innerHTML = `${esc(unitName(d))} <span class="small">📖 ${esc(d.pages)}</span>`;
     readHash();
     renderTabs();
     go(true);
@@ -338,7 +341,7 @@ function Spell(sec) {
   }
   function end() {
     const time = Math.round((Date.now() - t0) / 1000);
-    saveScore({ unit: Number(DATA.unit), section: sec.title, activity: "Listen and Spell", score: right, total: list.length, time });
+    saveScore({ unit: unitNo(), section: sec.title, activity: "Listen and Spell", score: right, total: list.length, time });
     view().innerHTML = `<div class="panel">${header(sec, U("🎧 Listen and Spell", "ฟังแล้วสะกด"))}
       <div class="bigscore">${right} / ${list.length}</div><p style="text-align:center">${U("Right on the first try", "ถูกตั้งแต่ครั้งแรก")}</p>
       <div class="btnrow"><button class="bigbtn green" id="spA">${U("Play again", "เล่นอีกครั้ง")}</button>${nextActBtn()}</div></div>`;
@@ -440,7 +443,7 @@ function Match(sec) {
     const best = store.get(key, null);
     const isBest = best === null || time < best;
     if (isBest) store.set(key, time);
-    saveScore({ unit: Number(DATA.unit), section: sec.title, activity: "Match Game", score: n, total: n, time });
+    saveScore({ unit: unitNo(), section: sec.title, activity: "Match Game", score: n, total: n, time });
     view().innerHTML = `<div class="panel">${header(sec, T)}
       <div class="bigscore">⏱️ ${time} s</div>
       <p style="text-align:center;font-weight:800">${isBest ? U("🎉 New best time!", "ทำเวลาดีที่สุดใหม่") : `${U("Your best time", "เวลาที่ดีที่สุด")}: ${best} s`}</p>
@@ -484,7 +487,7 @@ function Sort(sec) {
   }
   function end() {
     const time = Math.round((Date.now() - t0) / 1000);
-    saveScore({ unit: Number(DATA.unit), section: sec.title, activity: "Sort It", score: right, total: items.length, time });
+    saveScore({ unit: unitNo(), section: sec.title, activity: "Sort It", score: right, total: items.length, time });
     view().innerHTML = `<div class="panel">${header(sec, T)}
       <div class="bigscore">${right} / ${items.length}</div>
       <div class="sort-bins">${S.bins.map((b, k) => `<div class="sort-bin b${k}"><b>${tb(b)}</b><span class="in">${bins[k].map(esc).join(" · ")}</span></div>`).join("")}</div>
@@ -536,7 +539,7 @@ function Build(sec) {
   }
   function end() {
     const time = Math.round((Date.now() - t0) / 1000);
-    saveScore({ unit: Number(DATA.unit), section: sec.title, activity: "Sentence Builder", score: right, total: list.length, time });
+    saveScore({ unit: unitNo(), section: sec.title, activity: "Sentence Builder", score: right, total: list.length, time });
     view().innerHTML = `<div class="panel">${header(sec, T)}
       <div class="bigscore">${right} / ${list.length}</div><p style="text-align:center">${U("Right on the first check", "ถูกตั้งแต่ตรวจครั้งแรก")}</p>
       <div class="btnrow"><button class="bigbtn green" id="bA">${U("Play again", "เล่นอีกครั้ง")}</button>${nextActBtn()}</div></div>`;
@@ -602,7 +605,7 @@ function Quiz(sec) {
   }
   function end() {
     const time = Math.round((Date.now() - t0Quiz) / 1000);
-    saveScore({ unit: Number(DATA.unit), section: sec.title, activity: "Speed Quiz", score: correct, total: qs.length, time });
+    saveScore({ unit: unitNo(), section: sec.title, activity: "Speed Quiz", score: correct, total: qs.length, time });
     const msg = correct === qs.length ? "Perfect! 🌟" : correct >= qs.length * 0.7 ? "Great job! 🎉" : correct >= qs.length * 0.4 ? "Good try! Keep practising 💪" : "Look at Learn and Word Cards again, then play again 💪";
     view().innerHTML = `<div class="panel">${header(sec, T)}
       <div class="bigscore">${correct} / ${qs.length}</div>

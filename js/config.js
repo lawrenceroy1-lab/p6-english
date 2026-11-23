@@ -18,6 +18,6 @@ const UNITS = [
   { id: "08", title: "Cool Vacations!",      pages: "Book p.80 to 89 · Workbook p.64 to 71", icon: "🏖️", ready: true  }
 ];
 const EXTRAS = [
-  { id: "review", title: "Review and Let's Talk", icon: "⭐", ready: false },
-  { id: "verbs",  title: "Irregular Verbs",       icon: "📚", ready: false }
+  { id: "review", title: "Review and Let's Talk", pages: "Book p.90 to 93", icon: "⭐", ready: true },
+  { id: "verbs",  title: "Irregular Verbs",       pages: "Book p.94",       icon: "📚", ready: true }
 ];
