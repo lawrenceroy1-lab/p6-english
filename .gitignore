@@ -8,3 +8,4 @@ Claude Code Prompt.txt
 # Answers for T. Roy to check (private, like the maths site)
 content/CHECK-ME.md
 __pycache__/
+.venv/
